@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Ton‘s Blog</title>
+    <link rel="stylesheet" type="text/css" href="css.css"/>
+	<script type="text/javascript" src="index.js"></script>
+	<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+</head>
+
+<body>
+<div class="vi">
+    <div class="sidebar">
+        <div class="header">
+            <h1>Ton‘s Blog</h1>
+            <div class="quote">
+                <p class="quote-text animate-init"><span id="jinrishici-sentence">正在加载今日诗词....</span></p>
+                <p class="quote-author animate-init"></p>
+            </div>
+        </div>
+       <div class="menu">
+		  <a target="_blank" href="https://aiit.me/" class="animate-init" style="margin-right: 20px;color: #ff8f00;">新博客入口</a>
+        </div> 
+        <div class="location">
+            <i class="location-icon"></i>
+            <span class="location-text animate-init">China • Tsinan | Hosted by Github </span>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var delay = 1;
+        var DELAY_STEP = 200;
+        var animationOptions = { opacity: 1, top: 0};
+
+        $('h1').animate(animationOptions).promise()
+                .pipe(animateMain)
+                .pipe(animateLocationIcon);
+
+        function animateMain() {
+            var dfd = $.Deferred();
+            var els = $('.animate-init');
+            var size = els.size();
+
+            els.each(function (index, el) {
+                delay++;
+                $(el).delay(index * DELAY_STEP)
+                        .animate(animationOptions);
+                (size - 1 === index) && dfd.resolve();
+            });
+            return dfd.promise();
+        }
+
+        function animateLocationIcon() {
+            $('.location-icon').delay(delay * DELAY_STEP).animate({
+                opacity: 1,
+                top: 0
+            }).promise;
+        }
+    });
+</script>
+</body>
+</html>
