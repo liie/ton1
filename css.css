@@ -42,7 +42,7 @@ ol {
  position:relative;
  color:#5f605f;
  /*! font-style:italic */
- font-family: satisfy;
+ font-family: 'satisfy' !important;
  font-size: 35px;
 }
 .vi h1 span {
